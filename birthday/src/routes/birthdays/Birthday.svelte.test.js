@@ -11,4 +11,10 @@ describe('Birthday.svelte', () => {
 			screen.queryByText('Johnny')
 		).toBeVisible();
 	});
+	it('displays the date of birth', () => {
+		render(Birthday, { dob: '1990-01-01' });
+		expect(
+			screen.queryByText('1990-01-01')
+		).toBeVisible();
+	});
 });
