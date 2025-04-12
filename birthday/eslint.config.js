@@ -6,7 +6,9 @@ import globals from 'globals';
 import { fileURLToPath } from 'node:url';
 import svelteConfig from './svelte.config.js';
 
-const gitignorePath = fileURLToPath(new URL('./.gitignore', import.meta.url));
+const gitignorePath = fileURLToPath(
+	new URL('./.gitignore', import.meta.url)
+);
 
 export default [
 	includeIgnoreFile(gitignorePath),
@@ -20,7 +22,25 @@ export default [
 		}
 	},
 	{
+		files: ['**/*.test.js', '**/*.spec.js'],
+		languageOptions: {
+			globals: {
+				describe: 'readonly',
+				it: 'readonly',
+				test: 'readonly',
+				expect: 'readonly',
+				vi: 'readonly',
+				beforeEach: 'readonly',
+				afterEach: 'readonly',
+				beforeAll: 'readonly',
+				afterAll: 'readonly'
+			}
+		}
+	},
+	{
 		files: ['**/*.svelte', '**/*.svelte.js'],
-		languageOptions: { parserOptions: { svelteConfig } }
+		languageOptions: {
+			parserOptions: { svelteConfig }
+		}
 	}
 ];
